@@ -1,0 +1,156 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    display: grid;
+    grid-template-rows: auto, 1fr, auto;
+    grid-template : 
+        "header"
+        "main"
+        "footer";
+}
+
+main {
+    grid-area: main;
+    padding: 20px;
+    min-height: 98vh;
+}
+header {
+    grid-area: header;
+    background-color: #0e447a;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+    min-height: 50px;
+}
+footer {
+    grid-area: footer;
+    background-color: #0e447a;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 0.8em;
+    min-height: 45px;
+}
+
+header  nav {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+a:hover{
+    text-decoration: underline;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+}
+
+#form-entrada{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    align-items: center;
+    margin: 20% auto;
+}
+
+
+#container {
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    height: 100%;
+    width: 75%;
+    align-self: center;
+    justify-self: center;
+    color: white;
+}
+
+main{
+    background-image: url('./assets/bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Estilos para verificar la entrada del formulario */
+
+
+input.correcto{
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+input.incorrecto{
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+
+input.vacia{
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+}
+
+#input{
+    height: 40px;
+    width: 75%;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#sistema{
+    height: 40px;
+    width: 25%;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#buttonConvertir{
+    height: 40px;
+    width: 20%;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #0e447a;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+label{
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: white;
+    margin-right: 10px;
+}
+
+
+button.enabled{
+    background-color: #0e447a;
+    color: white;
+    cursor: pointer;
+}
+
+button.disabled{
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
