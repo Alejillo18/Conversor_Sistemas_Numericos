@@ -1,5 +1,5 @@
 import {desarmar} from "./desarmar.js"
-import {convertirBinADec,convertirOctalADec,convertirHexADec} from "./funciones.js"
+import {convertirBinADec,convertirBinAOctal,convertirBinAHex,convertirOctalADec,convertirHexADec, convertirDecABin,convertirDecAOctal,convertirDecAHex, convertirOctalABin,convertirOctalAHex} from "./funciones.js"
 
 
 
@@ -11,15 +11,21 @@ export function convertir(valor,sistema){
 
    switch(sistema){
       case "decimal":
-
+            convertirDecABin(valor)
+            convertirDecAOctal(valor)
+            convertirDecAHex(valor)
       case "binario":
-        console.log (convertirBinADec(valor))
+        convertirBinADec(valor)
+        convertirBinAOctal(valor)
+        convertirBinAHex(valor)
         break;
       case "octal":
-         console.log(convertirOctalADec(valor))
+         convertirOctalADec(valor)
+         convertirOctalABin(valor)
+         convertirOctalAHex(valor)
          break;
       case "hexadecimal":
-         console.log(convertirHexADec(valor))
+         convertirHexADec(valor)
          break;
       default:
          alert("Perdón, tipo de sistema no reconocido")
