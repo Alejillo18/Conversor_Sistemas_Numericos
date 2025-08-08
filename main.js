@@ -83,7 +83,9 @@ formularioHTML.addEventListener("submit", (e) => {
     e.preventDefault();
     if(validar()){
     let sistema = formularioHTML.sistema.value;
-    let valor = formularioHTML.valor.value;
-    convertir(valor,sistema)
+    let valor = formularioHTML.valor.value;  
+     const resultadosHTML = convertir(valor, sistema);
+        const resultadosContainer = document.getElementById("container");
+        resultadosContainer.innerHTML += resultadosHTML;
     }
-    });
+});

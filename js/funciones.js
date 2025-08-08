@@ -1,5 +1,12 @@
 import {cambiarLetraAnumero, cambiarNumeroALetra} from "./CambiarLetraANumero.js"
 
+const inversion = {
+    "1": "0",
+    "0": "1"
+}
+
+
+
 export function convertirBinADec(valor){
     /* De binario a decimal: se debe realizar el polinomio de potencias segun posicion: con la respectiva base 2, por ejemplo 1010 = 1*2**3 + 0*2**2 + 1*2**1 + 0*2**0 */
     let nroDecimalBin = 0;
@@ -8,7 +15,7 @@ export function convertirBinADec(valor){
         nroDecimalBin += (parseInt(valor[i])) * 2 ** indice
         indice -= 1;
     }
-    return nroDecimalBin
+    return nroDecimalBin.toString()
 }   
 
 
@@ -58,17 +65,18 @@ export function convertirOctalADec(valor){
         nroDecimalOct += (parseInt(valor[i])) * 8 ** indice
         indice -= 1;
     }
-    return nroDecimalOct
+    return nroDecimalOct.toString()
 }  
 
 
 export function convertirOctalABin(valor){
     //Como cada digito corresponde a una serie de 3 digitos binarios (111) como maximo, lo que corresponde es: 
+    valor = valor.toString()
     let solucion = [];
     let tresBin = 0;
     for(let nro of valor){
         tresBin = convertirDecABin(nro);
-        solucion.push(tresBin.join(""));
+        solucion.push(tresBin);
     }
     solucion = solucion.join("")
     return solucion
@@ -93,7 +101,6 @@ export function convertirOctalAHex(valor){
            nro =  (convertirBinADec(subconjuntos))
            solucion += nro>=10 ? cambiarNumeroALetra(nro) : nro.toString()
         }
-        console.log(solucion)
         return solucion;
 }
 
@@ -114,8 +121,34 @@ export function convertirHexADec(valor){
         nroDecimalHex += nro * 16 ** indice
         indice -= 1;
     }
-    return nroDecimalHex
+    return nroDecimalHex.toString()
 } 
+
+
+export function convertirHexABin(valor){
+    valor = valor.toString()
+    let solucion = [];
+    for(let caracter of valor){
+        caracter = caracter.toUpperCase();
+        let nro;
+        if(isNaN(caracter)){
+            nro = cambiarLetraAnumero(caracter)
+        }
+        else{
+            nro = parseInt(caracter)
+        }
+        nro = convertirDecABin(nro)
+        solucion.push(nro)
+    }
+    solucion = solucion.join("")
+    return solucion;
+
+}
+export function convertirHexAOctal(valor){
+    const nroBin = convertirHexABin(valor)
+    const solucion = convertirBinAOctal(nroBin)
+    return solucion
+}
 
 
 export function convertirDecABin(valor){
@@ -127,7 +160,8 @@ export function convertirDecABin(valor){
         dividendo = Math.floor(dividendo / divisor);
     }
     nroBin.reverse()
-    return nroBin
+    const solucion = nroBin.join("")
+    return solucion
 }
 export function convertirDecAOctal(valor){
     let dividendo = valor
@@ -138,7 +172,8 @@ export function convertirDecAOctal(valor){
         dividendo = Math.floor(dividendo / divisor);
     }
     nroOctal.reverse()
-    return nroOctal
+    const solucion = nroOctal.join("")
+    return solucion
 
 }
 export function convertirDecAHex(valor){
@@ -155,6 +190,37 @@ export function convertirDecAHex(valor){
         dividendo = Math.floor(dividendo / divisor);
     }
     nroHexa.reverse()
-    return nroHexa
+    const solucion = nroHexa.join("")
+    return solucion
 
+}
+
+
+
+/* Ahora vamos a realizar la funcion para el calculo de los complementos a 1 y a 2, el complemento a uno basicamente es 
+invertir los unos por ceros,y para realizar el complemento a 2 es sumarle uno al complemento a 1. */
+
+
+export function calcularComplemento1y2(bin){
+    let solucionA1 = []
+    for(let element of bin ){
+        solucionA1.push(inversion[element])
+    }
+   //Ahora realizamos el complemento a 2, seria sumarle un 1 binario a nuestra cadena del complemento a 1
+   let solucionA2 = [...solucionA1]
+   let acarreo = true;
+   for(let i = solucionA2.length-1; i >= 0; i--){
+    if(acarreo){
+        if(solucionA2[i] === "0"){
+           solucionA2[i] = inversion[solucionA2[i]]
+            acarreo = false;
+        }
+        else{
+            solucionA2[i] = inversion[solucionA2[i]]
+            
+        } 
+    }
+   }
+
+   return {solucionA1 : solucionA1.join("") ,solucionA2: solucionA2.join("")}
 }

@@ -1,18 +1,18 @@
 export function desarmar(valor) {
-    let entero = [];
-    let decimal = [];
-    let coma = false;
+    let entero = '';
+    let decimal = '';
+    let encontroComa = false;
 
     for (let char of valor) {
         if (char === ",") {
-            coma = true;
+            encontroComa = true;
             continue;
         }
 
-        if (coma) {
-            decimal.push(parseInt(char));
+        if (encontroComa) {
+            decimal += char;
         } else {
-            entero.push(parseInt(char));
+            entero += char;
         }
     }
 
