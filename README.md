@@ -17,8 +17,8 @@ El objetivo es facilitar la comprensión y el trabajo con diferentes bases numé
 
 2.Diseño responsive: para que la aplicación se adapte y se vea bien en cualquier dispositivo, ya sea computadora, tablet o celular.
 
-3. Operaciones con números binarios: sumar, restar, multiplicar y dividir directamente números en binario dentro de la aplicación.
+3.Operaciones con números binarios: sumar, restar, multiplicar y dividir directamente números en binario dentro de la aplicación.
 
-4. Historial de conversiones: guardar las conversiones realizadas por el usuario usando localStorage, para que pueda consultarlas más tarde sin perder información.
+4.Historial de conversiones: guardar las conversiones realizadas por el usuario usando localStorage, para que pueda consultarlas más tarde sin perder información.
 
 *Además, seguiré agregando mejoras y refinamientos a medida que avance con el proyecto.*
