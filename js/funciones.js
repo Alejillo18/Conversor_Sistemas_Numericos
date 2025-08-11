@@ -5,222 +5,394 @@ const inversion = {
     "0": "1"
 }
 
-
-
-export function convertirBinADec(valor){
-    /* De binario a decimal: se debe realizar el polinomio de potencias segun posicion: con la respectiva base 2, por ejemplo 1010 = 1*2**3 + 0*2**2 + 1*2**1 + 0*2**0 */
-    let nroDecimalBin = 0;
-    let indice = valor.length - 1 
-    for(let i = 0 ; i < valor.length; i ++){
-        nroDecimalBin += (parseInt(valor[i])) * 2 ** indice
-        indice -= 1;
+// Funciones para conversión de partes decimales
+function convertirDecimalBinADecimal(decimal){
+    let nroBinDecimal = 0;
+    for (let i = 0; i < decimal.length; i++) {
+        nroBinDecimal += parseInt(decimal[i]) * (2 ** -(i + 1));
     }
-    return nroDecimalBin.toString()
-}   
-
-
-
-export function convertirBinAOctal(valor){
-    let solucion = [];
-        //La forma mas sencila seria pasarlo de binario a decimal y de ahi a octal, pero vamos a realizarlo como se debe
-        while(valor.length % 3 !== 0){
-            valor = "0" + valor;
-        }
-        let grupos = [];
-        for (let i = 0; i < valor.length; i+=3){
-            grupos.push(valor.slice(i,i+3))
-        }  
-        /* Agrupamos de a tres los valores para realizar la conversion */
-        for(let subconjuntos of grupos){
-           solucion.push(convertirBinADec(subconjuntos))
-           //Como sabemos que 3 digitos en binario como maximo llegan al 7, usamos dicha funcion (111) = 7 en decimal
-        }
-        solucion = solucion.join("")
-        return solucion;
+    return nroBinDecimal;
 }
 
-export function convertirBinAHex(valor){
-    let nro = 0;
+function convertirOctalDecimalADecimal(decimal){
+    let nroOctDecimal = 0;
+    for (let i = 0; i < decimal.length; i++) {
+        nroOctDecimal += parseInt(decimal[i]) * (8 ** -(i + 1));
+    }
+    return nroOctDecimal;
+}
+
+function convertirHexDecimalADecimal(decimal){
+    let nroHexDecimal = 0;
+    for (let i = 0; i < decimal.length; i++) {
+        let caracter = decimal[i].toUpperCase();
+        let nro;
+        if(isNaN(caracter)){
+            nro = cambiarLetraAnumero(caracter)
+        }
+        else{
+            nro = parseInt(caracter)
+        }
+        nroHexDecimal += nro * (16 ** -(i + 1))
+    }
+    return nroHexDecimal
+}
+
+function convertirDecimalDecABin(decimal) {
+    let nro = parseFloat("0." + decimal);
+    let precision = 20;
+    let resultado = [];
+    
+    while (precision > 0 && nro > 0) {
+        nro *= 2;
+        let bit = Math.floor(nro);
+        resultado.push(bit);
+        nro -= bit;
+        precision--;
+    }
+    
+    return resultado.join("") || "0";
+}
+
+function convertirDecimalDecAOctal(decimal) {
+    let nro = parseFloat("0." + decimal);
+    let precision = 10;
+    let resultado = [];
+    
+    while (precision > 0 && nro > 0) {
+        nro *= 8;
+        let digit = Math.floor(nro);
+        resultado.push(digit);
+        nro -= digit;
+        precision--;
+    }
+    
+    return resultado.join("") || "0";
+}
+
+function convertirDecimalDecAHex(decimal) {
+    let nro = parseFloat("0." + decimal);
+    let precision = 8;
+    let resultado = [];
+    
+    while (precision > 0 && nro > 0) {
+        nro *= 16;
+        let digit = Math.floor(nro);
+        
+        if (digit > 9) {
+            digit = cambiarNumeroALetra(digit);
+        }
+        
+        resultado.push(digit);
+        nro -= Math.floor(nro);
+        precision--;
+    }
+    
+    return resultado.join("") || "0";
+}
+
+// Funciones principales de conversión
+export function convertirBinADec(entero, decimal){
+    let nroBinEntero = 0;
+    let nroBinDecimal = 0;
+    let indice = entero.length - 1;
+    
+    for(let i = 0; i < entero.length; i++) {
+        nroBinEntero += (parseInt(entero[i])) * 2 ** indice;
+        indice -= 1;
+    }
+    
+    if (decimal && decimal.length > 0) {
+        nroBinDecimal = convertirDecimalBinADecimal(decimal);
+    }
+    
+    return (nroBinEntero + nroBinDecimal).toString().replace(".",",");
+}
+
+export function convertirBinAOctal(entero, decimal){
+    let solucion = [];
+    
+    // Parte entera
+    while(entero.length % 3 !== 0){
+        entero = "0" + entero;
+    }
+    
+    let grupos = [];
+    for (let i = 0; i < entero.length; i += 3) {
+        grupos.push(entero.slice(i, i + 3));
+    }
+    
+    for(let subconjuntos of grupos) {
+        solucion.push(convertirBinADec(subconjuntos, ""));
+    }
+    
+    let resultado = solucion.join("");
+    
+    // Parte decimal
+    if (decimal && decimal.length > 0) {
+        let decimalBinario = decimal;
+        while(decimalBinario.length % 3 !== 0) {
+            decimalBinario += "0";
+        }
+        
+        grupos = [];
+        for (let i = 0; i < decimalBinario.length; i += 3) {
+            grupos.push(decimalBinario.slice(i, i + 3));
+        }
+        
+        solucion = [];
+        for(let subconjuntos of grupos) {
+            solucion.push(convertirBinADec(subconjuntos, ""));
+        }
+        
+        resultado += "," + solucion.join("");
+    }
+    
+    return resultado;
+}
+
+export function convertirBinAHex(entero, decimal){
     let solucion = "";
-        while(valor.length % 4!== 0){
-            valor = "0" + valor;
-        }
-        let grupos = [];
-        for (let i = 0; i < valor.length; i+=4){
-            grupos.push(valor.slice(i,i+4))
-        }  
-        /* Agrupamos de a cuatro los valores para realizar la conversion */
-        for(let subconjuntos of grupos){
-           nro =  (convertirBinADec(subconjuntos))
-           solucion += nro>=10 ? cambiarNumeroALetra(nro) : nro.toString()
-        }
-        return solucion;
-}
-
-export function convertirOctalADec(valor){
-    /* De Octal a decimal */
-    let nroDecimalOct = 0;
-    let indice = valor.length - 1
-    for(let i = 0 ; i < valor.length; i ++){
-        nroDecimalOct += (parseInt(valor[i])) * 8 ** indice
-        indice -= 1;
+    
+    // Parte entera
+    while(entero.length % 4 !== 0){
+        entero = "0" + entero;
     }
-    return nroDecimalOct.toString()
-}  
-
-
-export function convertirOctalABin(valor){
-    //Como cada digito corresponde a una serie de 3 digitos binarios (111) como maximo, lo que corresponde es: 
-    valor = valor.toString()
-    let solucion = [];
-    let tresBin = 0;
-    for(let nro of valor){
-        tresBin = convertirDecABin(nro);
-        solucion.push(tresBin);
+    
+    let grupos = [];
+    for (let i = 0; i < entero.length; i += 4) {
+        grupos.push(entero.slice(i, i + 4));
     }
-    solucion = solucion.join("")
-    return solucion
-}
-
-export function convertirOctalAHex(valor){
-    //Primero convertimos cada nro a binario, donde cada uno representa una cadena de 3 caracteres binarios (111) como maximo.reutilizando la funcion anterior.
-   let bin = convertirOctalABin(valor)
-   bin = bin.toString()
-   //Ahora debemos agrupar dicha cadena en grupos de 4, rellenando donde haga falta con 0 a la izquierda para respetar el patron:
-   while(bin.length % 4!== 0){
-            bin = "0" + bin;
-        }
-        let grupos = [];
-        for (let i = 0; i < bin.length; i+=4){
-            grupos.push(bin.slice(i,i+4))
-        }  
-        let nro;
-        let solucion = [];
-        /* Agrupamos de a cuatro los valores para realizar la conversion */
-        for(let subconjuntos of grupos){
-           nro =  (convertirBinADec(subconjuntos))
-           solucion += nro>=10 ? cambiarNumeroALetra(nro) : nro.toString()
-        }
-        return solucion;
-}
-
-export function convertirHexADec(valor){
-    let nroDecimalHex = 0;
-    let indice = valor.length - 1
-    for(let i = 0 ; i < valor.length; i ++){
-        let caracter = valor[i].toUpperCase();
-        let nro;
-
-        if(isNaN(caracter)){
-            nro = cambiarLetraAnumero(caracter)
-            
-        }
-        else{
-            nro = parseInt(caracter)
-        }
-        nroDecimalHex += nro * 16 ** indice
-        indice -= 1;
+    
+    for(let subconjuntos of grupos) {
+        let nro = convertirBinADec(subconjuntos, "");
+        solucion += nro >= 10 ? cambiarNumeroALetra(nro) : nro.toString();
     }
-    return nroDecimalHex.toString()
-} 
-
-
-export function convertirHexABin(valor){
-    valor = valor.toString()
-    let solucion = [];
-    for(let caracter of valor){
-        caracter = caracter.toUpperCase();
-        let nro;
-        if(isNaN(caracter)){
-            nro = cambiarLetraAnumero(caracter)
+    
+    // Parte decimal
+    if (decimal && decimal.length > 0) {
+        let decimalBinario = decimal;
+        while(decimalBinario.length % 4 !== 0) {
+            decimalBinario += "0";
         }
-        else{
-            nro = parseInt(caracter)
+        
+        grupos = [];
+        for (let i = 0; i < decimalBinario.length; i += 4) {
+            grupos.push(decimalBinario.slice(i, i + 4));
         }
-        nro = convertirDecABin(nro)
-        solucion.push(nro)
+        
+        let decimalHex = "";
+        for(let subconjuntos of grupos) {
+            let nro = convertirBinADec(subconjuntos, "");
+            decimalHex += nro >= 10 ? cambiarNumeroALetra(nro) : nro.toString();
+        }
+        
+        solucion += "," + decimalHex;
     }
-    solucion = solucion.join("")
+    
     return solucion;
-
-}
-export function convertirHexAOctal(valor){
-    const nroBin = convertirHexABin(valor)
-    const solucion = convertirBinAOctal(nroBin)
-    return solucion
 }
 
+export function convertirOctalADec(entero, decimal){
+    let nroOctEntero = 0;
+    let nroOctDecimal = 0;
+    let indice = entero.length - 1;
+    
+    for(let i = 0; i < entero.length; i++) {
+        nroOctEntero += (parseInt(entero[i])) * 8 ** indice;
+        indice -= 1;
+    }
+    
+    if (decimal && decimal.length > 0) {
+        nroOctDecimal = convertirOctalDecimalADecimal(decimal);
+    }
+    
+    return (nroOctEntero + nroOctDecimal).toString().replace(".",",");
+}
 
-export function convertirDecABin(valor){
-    let dividendo = valor
+export function convertirOctalABin(entero, decimal){
+    let solucion = [];
+    
+    // Parte entera
+    for(let nro of entero) {
+        solucion.push(convertirDecABin(parseInt(nro), ""));
+    }
+    
+    let resultado = solucion.join("");
+    
+    // Parte decimal
+    if (decimal && decimal.length > 0) {
+        solucion = [];
+        for(let nro of decimal) {
+            solucion.push(convertirDecABin(parseInt(nro), "").padStart(3, '0'));
+        }
+        
+        resultado += "," + solucion.join("");
+    }
+    
+    return resultado;
+}
+
+export function convertirOctalAHex(entero, decimal){
+    // Convertir a binario primero
+    const binario = convertirOctalABin(entero, decimal);
+    const [parteEnteraBin, parteDecimalBin] = binario.includes(",") ? binario.split(",") : [binario, ""];
+    
+    // Luego convertir binario a hexadecimal
+    return convertirBinAHex(parteEnteraBin, parteDecimalBin);
+}
+
+export function convertirHexADec(entero, decimal){
+    let nroHexEntero = 0;
+    let nroHexDecimal = 0;
+    let indice = entero.length - 1;
+    
+    for(let i = 0; i < entero.length; i++) {
+        let caracter = entero[i].toUpperCase();
+        let nro = isNaN(caracter) ? cambiarLetraAnumero(caracter) : parseInt(caracter);
+        nroHexEntero += nro * 16 ** indice;
+        indice -= 1;
+    }
+    
+    if (decimal && decimal.length > 0) {
+        nroHexDecimal = convertirHexDecimalADecimal(decimal);
+    }
+    
+    return (nroHexEntero + nroHexDecimal).toString().replace(".",",");
+}
+
+export function convertirHexABin(entero, decimal){
+    let solucion = [];
+    
+    // Parte entera
+    for(let caracter of entero) {
+        caracter = caracter.toUpperCase();
+        let nro = isNaN(caracter) ? cambiarLetraAnumero(caracter) : parseInt(caracter);
+        solucion.push(convertirDecABin(nro, "").padStart(4, '0'));
+    }
+    
+    let resultado = solucion.join("");
+    
+    // Parte decimal
+    if (decimal && decimal.length > 0) {
+        solucion = [];
+        for(let caracter of decimal) {
+            caracter = caracter.toUpperCase();
+            let nro = isNaN(caracter) ? cambiarLetraAnumero(caracter) : parseInt(caracter);
+            solucion.push(convertirDecABin(nro, "").padStart(4, '0'));
+        }
+        
+        resultado += "," + solucion.join("");
+    }
+    
+    return resultado;
+}
+
+export function convertirHexAOctal(entero, decimal){
+    // Convertir a binario primero
+    const binario = convertirHexABin(entero, decimal);
+    const [parteEnteraBin, parteDecimalBin] = binario.includes(",") ? binario.split(",") : [binario, ""];
+    
+    // Luego convertir binario a octal
+    return convertirBinAOctal(parteEnteraBin, parteDecimalBin);
+}
+
+export function convertirDecABin(entero, decimal){
+    let dividendo = parseInt(entero);
     const divisor = 2;
-    let nroBin = []
+    let nroBin = [];
+    
+    if (dividendo === 0) {
+        nroBin.push("0");
+    }
+    
     while(dividendo > 0){
         nroBin.push(dividendo % divisor);
         dividendo = Math.floor(dividendo / divisor);
     }
-    nroBin.reverse()
-    const solucion = nroBin.join("")
-    return solucion
+    
+    nroBin.reverse();
+    let solucion = nroBin.join("");
+    
+    if (decimal && decimal.length > 0) {
+        solucion += "," + convertirDecimalDecABin(decimal);
+    }
+    
+    return solucion;
 }
-export function convertirDecAOctal(valor){
-    let dividendo = valor
+
+export function convertirDecAOctal(entero, decimal){
+    let dividendo = parseInt(entero);
     const divisor = 8;
-    let nroOctal = []
+    let nroOctal = [];
+    
+    if (dividendo === 0) {
+        nroOctal.push("0");
+    }
+    
     while(dividendo > 0){
         nroOctal.push(dividendo % divisor);
         dividendo = Math.floor(dividendo / divisor);
     }
-    nroOctal.reverse()
-    const solucion = nroOctal.join("")
-    return solucion
-
+    
+    nroOctal.reverse();
+    let solucion = nroOctal.join("");
+    
+    if (decimal && decimal.length > 0) {
+        solucion += "," + convertirDecimalDecAOctal(decimal);
+    }
+    
+    return solucion;
 }
-export function convertirDecAHex(valor){
-    let dividendo = valor
+
+export function convertirDecAHex(entero, decimal){
+    let dividendo = parseInt(entero);
     const divisor = 16;
-    let nroHexa = []
-    let nroObtenido = 0;
+    let nroHexa = [];
+    
+    if (dividendo === 0) {
+        nroHexa.push("0");
+    }
+    
     while(dividendo > 0){
-        nroObtenido = dividendo % divisor
-        if(nroObtenido > 9 && nroObtenido<16){
-           nroObtenido = cambiarNumeroALetra(nroObtenido)
-        }
-        nroHexa.push(nroObtenido);
+        let nroObtenido = dividendo % divisor;
+        nroHexa.push(nroObtenido > 9 ? cambiarNumeroALetra(nroObtenido) : nroObtenido.toString());
         dividendo = Math.floor(dividendo / divisor);
     }
-    nroHexa.reverse()
-    const solucion = nroHexa.join("")
-    return solucion
-
+    
+    nroHexa.reverse();
+    let solucion = nroHexa.join("");
+    
+    if (decimal && decimal.length > 0) {
+        solucion += "," + convertirDecimalDecAHex(decimal);
+    }
+    
+    return solucion;
 }
 
-
-
-/* Ahora vamos a realizar la funcion para el calculo de los complementos a 1 y a 2, el complemento a uno basicamente es 
-invertir los unos por ceros,y para realizar el complemento a 2 es sumarle uno al complemento a 1. */
-
-
 export function calcularComplemento1y2(bin){
-    let solucionA1 = []
-    for(let element of bin ){
-        solucionA1.push(inversion[element])
+    let solucionA1 = [];
+    for(let element of bin) {
+        solucionA1.push(inversion[element]);
     }
-   //Ahora realizamos el complemento a 2, seria sumarle un 1 binario a nuestra cadena del complemento a 1
-   let solucionA2 = [...solucionA1]
-   let acarreo = true;
-   for(let i = solucionA2.length-1; i >= 0; i--){
-    if(acarreo){
-        if(solucionA2[i] === "0"){
-           solucionA2[i] = inversion[solucionA2[i]]
-            acarreo = false;
+    
+    let solucionA2 = [...solucionA1];
+    let acarreo = true;
+    
+    for(let i = solucionA2.length-1; i >= 0; i--) {
+        if(acarreo) {
+            if(solucionA2[i] === "0") {
+                solucionA2[i] = inversion[solucionA2[i]];
+                acarreo = false;
+            }
+            else {
+                solucionA2[i] = inversion[solucionA2[i]];
+            } 
         }
-        else{
-            solucionA2[i] = inversion[solucionA2[i]]
-            
-        } 
     }
-   }
-
-   return {solucionA1 : solucionA1.join("") ,solucionA2: solucionA2.join("")}
+    
+    return {
+        solucionA1: solucionA1.join(""),
+        solucionA2: solucionA2.join("")
+    };
 }

@@ -1,23 +1,19 @@
 export function desarmar(valor) {
-    let entero = '';
-    let decimal = '';
+    let entero = [];
+    let decimal = [];
     let encontroComa = false;
+    let separador = valor.includes(",") ? "," : valor.includes(".") ? "." : null;
 
-    for (let char of valor) {
-        if (char === ",") {
-            encontroComa = true;
-            continue;
-        }
-
-        if (encontroComa) {
-            decimal += char;
-        } else {
-            entero += char;
-        }
+    if (separador) {
+        [entero, decimal] = valor.split(separador);
+        return {
+            entero: entero,
+            decimal: decimal || ""
+        };
     }
 
     return {
-        entero,
-        decimal
+        entero: valor,
+        decimal: ""
     };
 }

@@ -19,11 +19,11 @@ export function convertir(valor,sistema){
 
    switch(sistema){
       case "decimal":
-         bin= convertirDecABin(valor);
-         octal = convertirDecAOctal(valor);
-         hexa = convertirDecAHex(valor);
-         complementoA1 = calcularComplemento1y2(bin).solucionA1;
-         complementoA2 = calcularComplemento1y2(bin).solucionA2;
+         bin= convertirDecABin(entero,decimal);
+         octal = convertirDecAOctal(entero,decimal);
+         hexa = convertirDecAHex(entero,decimal);
+         complementoA1 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA1;
+         complementoA2 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA2;
           mostrardatos = `
          <div class="resultados">
         <div class="resultado-item">
@@ -49,11 +49,11 @@ export function convertir(valor,sistema){
         </div>`;
         return mostrardatos;
       case "binario":
-      dec = convertirBinADec(valor)
-      octal =convertirBinAOctal(valor)
-       hexa = convertirBinAHex(valor)
-        complementoA1 = calcularComplemento1y2(valor).solucionA1
-        complementoA2 = calcularComplemento1y2(valor).solucionA2
+      dec = convertirBinADec(entero,decimal)
+      octal =convertirBinAOctal(entero,decimal)
+       hexa = convertirBinAHex(entero,decimal)
+        complementoA1 = calcularComplemento1y2(entero).solucionA1
+        complementoA2 = calcularComplemento1y2(entero).solucionA2
          mostrardatos= `
          <div class="resultados">
         <div class="resultado-item">
@@ -79,11 +79,11 @@ export function convertir(valor,sistema){
         </div>`;
         return mostrardatos;
       case "octal":
-        dec = convertirOctalADec(valor)
-         bin = convertirOctalABin(valor)
-         hexa =convertirOctalAHex(valor)
-         complementoA1 = calcularComplemento1y2(bin).solucionA1
-        complementoA2 = calcularComplemento1y2(bin).solucionA2
+        dec = convertirOctalADec(entero,decimal)
+         bin = convertirOctalABin(entero,decimal)
+         hexa =convertirOctalAHex(entero,decimal)
+         complementoA1 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA1
+        complementoA2 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA2
         mostrardatos = `<div class="resultados">
         <div class="resultado-item">
             <h3>Decimal</h3>
@@ -108,11 +108,11 @@ export function convertir(valor,sistema){
         </div>`;
         return mostrardatos;
       case "hexadecimal":
-         dec = convertirHexADec(valor)
-         bin = convertirHexABin(valor)
-        octal = convertirHexAOctal(valor)
-         complementoA1 = calcularComplemento1y2(bin).solucionA1
-         complementoA2 = calcularComplemento1y2(bin).solucionA2
+         dec = convertirHexADec(entero,decimal)
+         bin = convertirHexABin(entero,decimal)
+        octal = convertirHexAOctal(entero,decimal)
+         complementoA1 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA1
+         complementoA2 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA2
          mostrardatos =`<div class="resultados">
         <div class="resultado-item">
             <h3>Decimal</h3>

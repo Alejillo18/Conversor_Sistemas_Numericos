@@ -2,10 +2,10 @@ import {convertir} from "./js/conversion.js"
 
 //Funcion para verificar el tipo y si coincide con el valor ingresado:
 const caracteresPorSistema = {
-    "decimal" : ["0","1","2","3","4","5","6","7","8","9",","],
-    "octal" : ["0","1","2","3","4","5","6","7",","],
-    "hexadecimal": ["0","1","2","3","4","5","6","7","8","9","a","A","b","B","c","C","d","D","e","E","f","F",","],
-    "binario" : ["0","1",","]
+    "decimal" : ["0","1","2","3","4","5","6","7","8","9",",","."],
+    "octal" : ["0","1","2","3","4","5","6","7",",","."],
+    "hexadecimal": ["0","1","2","3","4","5","6","7","8","9","a","A","b","B","c","C","d","D","e","E","f","F",",","."],
+    "binario" : ["0","1",",","."]
 };
 
 
@@ -79,13 +79,14 @@ function validar(){
 }
 valor.addEventListener("input",validar)
 sistema.addEventListener("change",validar)
+validar()
 formularioHTML.addEventListener("submit", (e) => {
     e.preventDefault();
     if(validar()){
     let sistema = formularioHTML.sistema.value;
     let valor = formularioHTML.valor.value;  
      const resultadosHTML = convertir(valor, sistema);
-        const resultadosContainer = document.getElementById("container");
-        resultadosContainer.innerHTML += resultadosHTML;
+        const resultadosContainer = document.getElementById("resultados");
+        resultadosContainer.innerHTML = resultadosHTML;
     }
 });
