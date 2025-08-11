@@ -13,7 +13,7 @@ Al hacer clic en convertir, la aplicación te muestra el número en el sistema e
 El objetivo es facilitar la comprensión y el trabajo con diferentes bases numéricas, algo muy útil en áreas como la informática, la electrónica o simplemente para aprender más sobre cómo funcionan los números.
 
 ## Mejoras planificadas
-1. _Soporte para números con coma (decimales):_ incorporar la posibilidad de convertir números que tengan parte decimal.
+1. _Soporte para números con coma (decimales):_ incorporar la posibilidad de convertir números que tengan parte decimal. ✅
 
 2. _Diseño responsive:_ para que la aplicación se adapte y se vea bien en cualquier dispositivo, ya sea computadora, tablet o celular.
 
