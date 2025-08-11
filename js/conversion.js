@@ -26,6 +26,7 @@ export function convertir(valor,sistema){
          complementoA2 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA2;
           mostrardatos = `
          <div class="resultados">
+         <h2 class= "subtitle">Conversiones:</h2>
         <div class="resultado-item">
             <h3>Binario</h3>
             <p>${bin}</p>
@@ -46,6 +47,7 @@ export function convertir(valor,sistema){
             <h3>Complemento a 2</h3>
             <p>${complementoA2}</p>
         </div>
+        <h4>Tanto el complemento a 1, como el complemento a 2, se lo realizamos al numero binario y su parte entera! </h4>
         </div>`;
         return mostrardatos;
       case "binario":
@@ -56,6 +58,7 @@ export function convertir(valor,sistema){
         complementoA2 = calcularComplemento1y2(entero).solucionA2
          mostrardatos= `
          <div class="resultados">
+         <h2 class= "subtitle">Conversiones</h2>
         <div class="resultado-item">
             <h3>Decimal</h3>
             <p>${dec}</p>
@@ -76,6 +79,7 @@ export function convertir(valor,sistema){
             <h3>Complemento a 2</h3>
             <p>${complementoA2}</p>
         </div>
+        <h4>Tanto el complemento a 1, como el complemento a 2, se lo realizamos al numero binario y su parte entera! </h4>
         </div>`;
         return mostrardatos;
       case "octal":
@@ -85,6 +89,7 @@ export function convertir(valor,sistema){
          complementoA1 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA1
         complementoA2 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA2
         mostrardatos = `<div class="resultados">
+        <h2 class= "subtitle">Conversiones</h2>
         <div class="resultado-item">
             <h3>Decimal</h3>
             <p>${dec}</p>
@@ -105,6 +110,7 @@ export function convertir(valor,sistema){
             <h3>Complemento a 2</h3>
             <p>${complementoA2}</p>
         </div>
+        <h4>Tanto el complemento a 1, como el complemento a 2, se lo realizamos al numero binario y su parte entera! </h4>
         </div>`;
         return mostrardatos;
       case "hexadecimal":
@@ -114,6 +120,7 @@ export function convertir(valor,sistema){
          complementoA1 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA1
          complementoA2 = calcularComplemento1y2(bin.split(/[,.]/)[0]).solucionA2
          mostrardatos =`<div class="resultados">
+         <h2 class= "subtitle">Conversiones</h2>
         <div class="resultado-item">
             <h3>Decimal</h3>
             <p>${dec}</p>
@@ -134,6 +141,7 @@ export function convertir(valor,sistema){
             <h3>Complemento a 2</h3>
             <p>${complementoA2}</p>
         </div>
+        <h4>Tanto el complemento a 1, como el complemento a 2, se lo realizamos al numero binario y su parte entera! </h4>
         </div>`;
         return mostrardatos;
       default:

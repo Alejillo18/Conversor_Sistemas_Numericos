@@ -17,7 +17,6 @@ body{
 
 main {
     grid-area: main;
-    padding: 20px;
     min-height: 98vh;
 }
 header {
@@ -64,7 +63,7 @@ a:hover{
     flex-flow: row wrap;
     gap: 20px;
     align-items: center;
-    margin: 20% auto;
+    margin: 10% auto;
 }
 
 
@@ -73,7 +72,7 @@ a:hover{
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    height: 50%;
+    height: 30%;
     width: 75%;
     align-self: center;
     justify-self: center;
@@ -84,7 +83,7 @@ a:hover{
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    height: 50%;
+    height: 70%;
     width: 75%;
     align-self: center;
     justify-self: center;
