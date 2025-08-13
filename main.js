@@ -26,9 +26,9 @@ function verificarIngreso(valor,tipo){
 const container = document.getElementById("container");
 let form = ``;
 form += `<form id = "form-entrada">
-<label for = "input" >Ingrese el numero que desea convertir</label>
+<label for = "input" >Ingrese el número que desea convertir</label>
 <input name = "valor" type="text" id = "input" required></input>
-<label for ="sistema" >Seleccione el sistema del cual desea partir la conversión</label>
+<label for ="sistema" >Seleccione el sistema desde el cual desea realizar la conversión</label>
 <select name = "sistema" id = "sistema" requiered>
 <option value = "decimal" >Decimal</option>
 <option value = "binario">Binario</option>

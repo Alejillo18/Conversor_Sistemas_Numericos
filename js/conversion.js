@@ -47,7 +47,7 @@ export function convertir(valor,sistema){
             <h3>Complemento a 2</h3>
             <p>${complementoA2}</p>
         </div>
-        <h4>Tanto el complemento a 1, como el complemento a 2, se lo realizamos al numero binario y su parte entera! </h4>
+        <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
         return mostrardatos;
       case "binario":
@@ -79,7 +79,7 @@ export function convertir(valor,sistema){
             <h3>Complemento a 2</h3>
             <p>${complementoA2}</p>
         </div>
-        <h4>Tanto el complemento a 1, como el complemento a 2, se lo realizamos al numero binario y su parte entera! </h4>
+        <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera.</h4>
         </div>`;
         return mostrardatos;
       case "octal":
@@ -110,7 +110,7 @@ export function convertir(valor,sistema){
             <h3>Complemento a 2</h3>
             <p>${complementoA2}</p>
         </div>
-        <h4>Tanto el complemento a 1, como el complemento a 2, se lo realizamos al numero binario y su parte entera! </h4>
+        <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
         return mostrardatos;
       case "hexadecimal":
@@ -141,7 +141,7 @@ export function convertir(valor,sistema){
             <h3>Complemento a 2</h3>
             <p>${complementoA2}</p>
         </div>
-        <h4>Tanto el complemento a 1, como el complemento a 2, se lo realizamos al numero binario y su parte entera! </h4>
+        <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
         return mostrardatos;
       default:

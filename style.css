@@ -238,20 +238,26 @@ label{
 
 
 .footerContainer{
+    display: flex;
     justify-self: center;
     align-self: center;
-    flex-direction: row;
+    flex-flow: row ;
 }
 
 .footerContainer img{
-    width: 35px;
-    height: 35px;
-    margin: 0 20px 0 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 10px 0 10px;
+    justify-self: center;
+    align-self:  center;
 }
 
-
 .footerContainer a :hover{
-    width: 40px;
-    height: 40px;
-    transition: all  0.5s ease-in;
+    width: 25px;
+    height: 25px;
+}
+
+.footerContainer h3 {
+    font-size: clamp(0.625rem, 0.5347rem + 0.7222vw, 1.4375rem);
+    justify-self: center;
 }
