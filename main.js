@@ -1,6 +1,6 @@
 import {convertir} from "./js/conversion.js"
 import {armarHistorial} from "./js/armarHistorial.js"
-
+import {eliminarHistorial} from "./js/eliminarHistorial.js"
 //Funcion para verificar el tipo y si coincide con el valor ingresado:
 const caracteresPorSistema = {
     "decimal" : ["0","1","2","3","4","5","6","7","8","9",",","."],
@@ -46,6 +46,7 @@ const valor = document.getElementById("input");
 const sistema = document.getElementById("sistema");
 const button = document.getElementById("buttonConvertir");
 const historial = document.getElementById("historial")
+const elimHistorial = document.querySelector(".elimHistorial")
 
 function validar(){
     const entrada = valor.value.trim();
@@ -79,7 +80,7 @@ function validar(){
     }
 
 }
-historial.innerHTML = armarHistorial();
+historial.innerHTML = armarHistorial(elimHistorial);
 valor.addEventListener("input",validar)
 sistema.addEventListener("change",validar)
 validar()
@@ -92,5 +93,11 @@ formularioHTML.addEventListener("submit", (e) => {
         const resultadosContainer = document.getElementById("resultados");
         resultadosContainer.innerHTML = resultadosHTML;
     }
-    historial.innerHTML = armarHistorial();
+    historial.innerHTML = armarHistorial(elimHistorial);
 });
+
+
+elimHistorial.addEventListener("click",() => {
+    eliminarHistorial(elimHistorial);
+    historial.innerHTML = armarHistorial(elimHistorial);
+})

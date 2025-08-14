@@ -8,14 +8,18 @@ const sistema = {
     5: "complemento a 2",
 }
 
-export function armarHistorial(){
+export function armarHistorial(button){
     let historial = ``
     let resultados = [];
     if(localStorage.length === 0){
         historial += `
         <h4>Todavía no realizo ninguna operación</h4>`
+        button.classList.add("disabled")
+        button.classList.remove("enabled")
     }
     else{
+        button.classList.add("enabled")
+        button.classList.remove("disabled")
         historial += `<h2>Historial de operaciones:</h2>`
         for(let i = 0; i<localStorage.length ; i++){
             let key = localStorage.key(i)
@@ -23,27 +27,26 @@ export function armarHistorial(){
             res = new Resultados(res.decimal,res.binario,res.octal,res.hexadecimal,res.complemento1,res.complemento2)
             resultados.push(res)
         }
+        
+    for(let grupres of resultados){
         historial += `<table><tr>
             <th>Sistema</th>
             <th>Valor númerico</th>
             </tr>`
-    
-
-    for(let grupres of resultados){
         let i = 0;
         for( let res in grupres){
             historial += 
             `<tr>
             <th>${sistema[i]}</th>
             <th>${grupres[res]}</th>
-            </tr>} `
+            </tr>`
             
             i++;
             }      
            historial += `</table>`     
     }  
-    return historial;
 }
+return historial;
 }
 
         

@@ -20,7 +20,7 @@ body {
 main {
     grid-area: main;
     display: grid;
-    grid-template-rows: auto 1fr; /* Primera fila según contenido, segunda ocupa el resto */
+    grid-template-rows: auto 1fr;
     grid-template-columns: repeat(6, 1fr);
     padding: 20px;
     background-image: url('./assets/bg.png');
@@ -71,7 +71,7 @@ a:hover{
     flex-flow: row wrap;
     gap: 20px;
     align-items: center;
-    margin: 0 auto; /* centrado sin empujar */
+    margin: 0 auto;
 }
 
 #container {
@@ -99,17 +99,19 @@ a:hover{
 
 .historial {
     grid-row: 1 / 3;
-    grid-column: 6 / 7;
+    grid-column: 5/ 7;
     background-color: whitesmoke;
     color: black;
     border-radius: 5%;
     padding: 20px;
     margin-top: 25px;
     overflow-y: scroll;
+    overflow-x: scroll;
     height:100vh;
+    margin-left : 35px
 }
 
-/* Estilos para verificar la entrada del formulario */
+
 input.correcto{
     background-color: #d4edda;
     border: 1px solid #c3e6cb;
@@ -174,7 +176,6 @@ label{
     cursor: not-allowed;
 }
 
-/* Estilos para el contenedor de resultados */
 .resultados {
     display: flex;
     flex-direction: column;
@@ -226,7 +227,7 @@ label{
 .resultado-item:nth-child(5) h3 { color: #F44336; } /* Complemento a 1 */
 .resultado-item:nth-child(6) h3 { color: #E91E63; } /* Complemento a 2 */
 
-/* Animación de aparición */
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -268,12 +269,16 @@ label{
     justify-self: center;
 }
 
+.elimHistorial{
+    position: absolute;
+    justify-self: flex-start;
+    align-self: flex-start;
+    margin: -35px;
+}
+
 .elimHistorial.enabled{
-    position:static;
-    justify-self: flex-end;
-    align-self: baseline;
     background-color: red;
-    opacity: 0;
+    opacity: 1;
 }
 
 .elimHistorial.enabled:hover{
@@ -282,7 +287,9 @@ label{
     transition: all 0.7s ease;
 }
 
-
+.elimHistorial.disabled{
+    opacity: 0;
+}
 
 
 table {
