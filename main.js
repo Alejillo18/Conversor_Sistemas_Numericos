@@ -1,4 +1,5 @@
 import {convertir} from "./js/conversion.js"
+import {armarHistorial} from "./js/armarHistorial.js"
 
 //Funcion para verificar el tipo y si coincide con el valor ingresado:
 const caracteresPorSistema = {
@@ -44,6 +45,7 @@ const formularioHTML = document.getElementById("form-entrada");
 const valor = document.getElementById("input");
 const sistema = document.getElementById("sistema");
 const button = document.getElementById("buttonConvertir");
+const historial = document.getElementById("historial")
 
 function validar(){
     const entrada = valor.value.trim();
@@ -77,6 +79,7 @@ function validar(){
     }
 
 }
+historial.innerHTML = armarHistorial();
 valor.addEventListener("input",validar)
 sistema.addEventListener("change",validar)
 validar()
@@ -89,4 +92,5 @@ formularioHTML.addEventListener("submit", (e) => {
         const resultadosContainer = document.getElementById("resultados");
         resultadosContainer.innerHTML = resultadosHTML;
     }
+    historial.innerHTML = armarHistorial();
 });

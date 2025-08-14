@@ -2,8 +2,8 @@ import {desarmar} from "./desarmar.js"
 import {convertirBinADec,convertirBinAOctal,convertirBinAHex,convertirOctalADec,convertirHexADec,convertirHexABin,convertirHexAOctal, 
    convertirDecABin,convertirDecAOctal,convertirDecAHex, convertirOctalABin,convertirOctalAHex,
 calcularComplemento1y2} from "./funciones.js"
-
-
+import {Resultados} from "./resultados.js"
+import {obtenerID} from "./obtenerID.js"
 
 export function convertir(valor,sistema){
    const entero = desarmar(valor).entero;
@@ -15,6 +15,9 @@ export function convertir(valor,sistema){
    let complementoA2;
    let dec;
    let mostrardatos = ``
+   let nro = 0;
+   let resultados = {};
+   
    //Primero debemos verificar a que sistema pertenece el valor que recibimos, por lo tanto podemos hacer un switch case:
 
    switch(sistema){
@@ -49,6 +52,9 @@ export function convertir(valor,sistema){
         </div>
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
+        resultados = new Resultados(valor,bin,octal,hexa,complementoA1,complementoA2)
+        nro = obtenerID() + 1;
+        localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;
       case "binario":
       dec = convertirBinADec(entero,decimal)
@@ -81,6 +87,9 @@ export function convertir(valor,sistema){
         </div>
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera.</h4>
         </div>`;
+        resultados = new Resultados(valor,bin,octal,hexa,complementoA1,complementoA2)
+        nro = obtenerID() + 1;
+        localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;
       case "octal":
         dec = convertirOctalADec(entero,decimal)
@@ -112,6 +121,9 @@ export function convertir(valor,sistema){
         </div>
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
+        resultados = new Resultados(valor,bin,octal,hexa,complementoA1,complementoA2)
+        nro = obtenerID() + 1;
+        localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;
       case "hexadecimal":
          dec = convertirHexADec(entero,decimal)
@@ -143,6 +155,9 @@ export function convertir(valor,sistema){
         </div>
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
+        resultados = new Resultados(valor,bin,octal,hexa,complementoA1,complementoA2)
+        nro = obtenerID() + 1;
+        localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;
       default:
          alert("Perdón, tipo de sistema no reconocido")
