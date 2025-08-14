@@ -1,9 +1,9 @@
-import {desarmar} from "./desarmar.js"
+import {desarmar} from "/Conversor_Sistemas_Numericos/desarmar.js"
 import {convertirBinADec,convertirBinAOctal,convertirBinAHex,convertirOctalADec,convertirHexADec,convertirHexABin,convertirHexAOctal, 
    convertirDecABin,convertirDecAOctal,convertirDecAHex, convertirOctalABin,convertirOctalAHex,
-calcularComplemento1y2} from "./funciones.js"
-import {Resultados} from "./resultados.js"
-import {obtenerID} from "./obtenerID.js"
+calcularComplemento1y2} from "/Conversor_Sistemas_Numericos/funciones.js"
+import {Resultados} from "/Conversor_Sistemas_Numericos/resultados.js"
+import {obtenerID} from "/Conversor_Sistemas_Numericos/obtenerID.js"
 
 export function convertir(valor,sistema){
    const entero = desarmar(valor).entero;

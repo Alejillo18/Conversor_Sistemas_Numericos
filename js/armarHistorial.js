@@ -1,4 +1,4 @@
-import {Resultados}from "./resultados.js"
+import {Resultados}from "/Conversor_Sistemas_Numericos/resultados.js"
 const sistema = {
     0: "decimal",
     1: "binario",

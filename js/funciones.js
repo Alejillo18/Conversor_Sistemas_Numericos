@@ -1,4 +1,4 @@
-import { cambiarLetraAnumero, cambiarNumeroALetra } from "./CambiarLetraANumero.js";
+import { cambiarLetraAnumero, cambiarNumeroALetra } from "/Conversor_Sistemas_Numericos/CambiarLetraANumero.js";
 
 const inversion = {
     "1": "0",
