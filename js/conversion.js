@@ -31,6 +31,10 @@ export function convertir(valor,sistema){
          <div class="resultados">
          <h2 class= "subtitle">Conversiones:</h2>
         <div class="resultado-item">
+        <div class="resultado-item">
+            <h3>Decimal</h3>
+            <p>${valor}</p>
+        </div>
             <h3>Binario</h3>
             <p>${bin}</p>
         </div>
@@ -70,6 +74,10 @@ export function convertir(valor,sistema){
             <p>${dec}</p>
         </div>
         <div class="resultado-item">
+            <h3>Binario</h3>
+            <p>${valor}</p>
+        </div>
+        <div class="resultado-item">
             <h3>Octal</h3>
             <p>${octal}</p>
         </div>
@@ -87,7 +95,7 @@ export function convertir(valor,sistema){
         </div>
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera.</h4>
         </div>`;
-        resultados = new Resultados(valor,bin,octal,hexa,complementoA1,complementoA2)
+        resultados = new Resultados(dec,valor,octal,hexa,complementoA1,complementoA2)
         nro = obtenerID() + 1;
         localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;
@@ -108,6 +116,10 @@ export function convertir(valor,sistema){
             <p>${bin}</p>
         </div>
         <div class="resultado-item">
+            <h3>Octal</h3>
+            <p>${valor}</p>
+        </div>
+        <div class="resultado-item">
             <h3>Hexadecimal</h3>
             <p>${hexa}</p>
         </div>
@@ -121,7 +133,7 @@ export function convertir(valor,sistema){
         </div>
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
-        resultados = new Resultados(valor,bin,octal,hexa,complementoA1,complementoA2)
+        resultados = new Resultados(dec,bin,valor,hexa,complementoA1,complementoA2)
         nro = obtenerID() + 1;
         localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;
@@ -146,6 +158,10 @@ export function convertir(valor,sistema){
             <p>${octal}</p>
         </div>
         <div class="resultado-item">
+            <h3>Hexadecimal</h3>
+            <p>${valor}</p>
+        </div>
+        <div class="resultado-item">
             <h3>Complemento a 1</h3>
             <p>${complementoA1}</p>
         </div>
@@ -155,7 +171,7 @@ export function convertir(valor,sistema){
         </div>
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
-        resultados = new Resultados(valor,bin,octal,hexa,complementoA1,complementoA2)
+        resultados = new Resultados(dec,bin,octal,valor,complementoA1,complementoA2)
         nro = obtenerID() + 1;
         localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;

@@ -21,12 +21,19 @@ export function armarHistorial(button){
         button.classList.add("enabled")
         button.classList.remove("disabled")
         historial += `<h2>Historial de operaciones:</h2>`
-        for(let i = 0; i<localStorage.length ; i++){
-            let key = localStorage.key(i)
-            let res = JSON.parse(localStorage.getItem(key));
-            res = new Resultados(res.decimal,res.binario,res.octal,res.hexadecimal,res.complemento1,res.complemento2)
-            resultados.push(res)
+        let resultados = [];
+
+        for (let i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            if (key.startsWith("res")) {
+                let res = JSON.parse(localStorage.getItem(key));
+                res._keyNum = parseInt(key.replace('res',''));
+                resultados.push(res);
+            }
         }
+        resultados.sort((a, b) => b._keyNum - a._keyNum);
+        resultados = resultados.map(res => new Resultados(res.decimal,res.binario,res.octal,res.hexadecimal,res.complemento1,res.complemento2));
+        
         
     for(let grupres of resultados){
         historial += `<table><tr>
