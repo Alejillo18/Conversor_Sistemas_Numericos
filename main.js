@@ -1,6 +1,6 @@
-import {convertir} from "/Conversor_Sistemas_Numericos/js/conversion.js"
-import {armarHistorial} from "/Conversor_Sistemas_Numericos/js/armarHistorial.js"
-import {eliminarHistorial} from "/Conversor_Sistemas_Numericos/js/eliminarHistorial.js"
+import {convertir} from "./js/conversion.js"
+import {armarHistorial} from "./js/armarHistorial.js"
+import {eliminarHistorial} from "./js/eliminarHistorial.js"
 //Funcion para verificar el tipo y si coincide con el valor ingresado:
 const caracteresPorSistema = {
     "decimal" : ["0","1","2","3","4","5","6","7","8","9",",","."],
