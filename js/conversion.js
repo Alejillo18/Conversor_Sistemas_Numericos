@@ -3,7 +3,7 @@ import {convertirBinADec,convertirBinAOctal,convertirBinAHex,convertirOctalADec,
    convertirDecABin,convertirDecAOctal,convertirDecAHex, convertirOctalABin,convertirOctalAHex,
 calcularComplemento1y2} from "./funciones.js"
 import {Resultados} from "./resultados.js"
-import {obtenerID} from "./obtenerID.js"
+import { obtenerIDConv } from "./obtenerID.js"
 
 export function convertir(valor,sistema){
    const entero = desarmar(valor).entero;
@@ -57,7 +57,7 @@ export function convertir(valor,sistema){
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
         resultados = new Resultados(valor,bin,octal,hexa,complementoA1,complementoA2)
-        nro = obtenerID() + 1;
+        nro = obtenerIDConv() + 1;
         localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;
       case "binario":
@@ -96,7 +96,7 @@ export function convertir(valor,sistema){
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera.</h4>
         </div>`;
         resultados = new Resultados(dec,valor,octal,hexa,complementoA1,complementoA2)
-        nro = obtenerID() + 1;
+        nro = obtenerIDConv() + 1;
         localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;
       case "octal":
@@ -134,7 +134,7 @@ export function convertir(valor,sistema){
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
         resultados = new Resultados(dec,bin,valor,hexa,complementoA1,complementoA2)
-        nro = obtenerID() + 1;
+        nro = obtenerIDConv() + 1;
         localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;
       case "hexadecimal":
@@ -172,7 +172,7 @@ export function convertir(valor,sistema){
         <h4>Tanto el complemento a 1 como el complemento a 2 se lo realizamos al número binario y su parte entera. </h4>
         </div>`;
         resultados = new Resultados(dec,bin,octal,valor,complementoA1,complementoA2)
-        nro = obtenerID() + 1;
+        nro = obtenerIDConv() + 1;
         localStorage.setItem("res" + nro,JSON.stringify(resultados))
         return mostrardatos;
       default:

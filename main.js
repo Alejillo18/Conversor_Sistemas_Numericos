@@ -1,139 +1,56 @@
-import {convertir} from "./js/conversion.js"
-import {armarHistorial} from "./js/armarHistorial.js"
-import {eliminarHistorial} from "./js/eliminarHistorial.js"
-//Funcion para verificar el tipo y si coincide con el valor ingresado:
-const caracteresPorSistema = {
-    "decimal" : ["0","1","2","3","4","5","6","7","8","9",",","."],
-    "octal" : ["0","1","2","3","4","5","6","7",",","."],
-    "hexadecimal": ["0","1","2","3","4","5","6","7","8","9","a","A","b","B","c","C","d","D","e","E","f","F",",","."],
-    "binario" : ["0","1",",","."]
+import {ConversionPage } from './conversiones.js';
+import {OperacionesPage} from './operacionesBinarios.js'
+
+const routes = {
+    "#/": {  // Cambiado de "#/index.html" a "#/"
+        title: 'Conversor',
+        page: ConversionPage
+    },
+    "#/operacionesBinarios": {
+        title: 'Operaciones',
+        page: OperacionesPage
+    },
 };
 
+const container = document.getElementById("container");
+const historial = document.getElementById("historial");
 
-function verificarIngreso(valor,tipo){
-    for(let numero of valor){        
-        if(!caracteresPorSistema[tipo].includes(numero)){
-            return false;
+function renderPage(route) {
+    container.innerHTML = '';
+    container.innerHTML = route.page.template;
+    route.page.init();
+    document.title = route.title;
+}
+
+function navigateTo(path) {
+    if (routes[path]) {
+        window.location.hash = path; // Corregido de window.history.hash a window.location.hash
+        renderPage(routes[path]);
+    }
+}
+
+window.addEventListener("hashchange", () => {
+    const path = window.location.hash;
+    if (routes[path]) {
+        renderPage(routes[path]);
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('click', (e) => {
+        if (e.target.matches('[data-link]')) {
+            e.preventDefault();
+            navigateTo(e.target.getAttribute('href'));
+        }
+    });
+
+    // Navegar a la página de conversión por defecto si no hay hash
+    if (!window.location.hash || window.location.hash === "#/") {
+        navigateTo("#/");
+    } else {
+        const path = window.location.hash;
+        if (routes[path]) {
+            renderPage(routes[path]);
         }
     }
-    return true;
-    
-}
-
-
-
-
-//Realizamos el html y obtenemos los datos del formulario cuando clickeamos el boton convertir
-const container = document.getElementById("container");
-let form = ``;
-form += `<form id = "form-entrada">
-<label for = "input" >Ingrese el número que desea convertir</label>
-<input name = "valor" type="text" id = "input" required></input>
-<label for ="sistema" >Seleccione el sistema desde el cual desea realizar la conversión</label>
-<select name = "sistema" id = "sistema" requiered>
-<option value = "decimal" >Decimal</option>
-<option value = "binario">Binario</option>
-<option value = "octal">Octal</option>
-<option value = "hexadecimal">Hexadecimal</option>
-</select>
-<button type = "submit" id = "buttonConvertir" class= "disabled" disabled>Convertir</button>
-</form>
-`;
-container.innerHTML = form;
-
-const formularioHTML = document.getElementById("form-entrada");
-const valor = document.getElementById("input");
-const sistema = document.getElementById("sistema");
-const button = document.getElementById("buttonConvertir");
-const historial = document.getElementById("historial")
-const elimHistorial = document.querySelector(".elimHistorial")
-
-function validar(){
-    const entrada = valor.value.trim();
-    const numeracion = sistema.value;
-
-    if (entrada === "") {
-        valor.classList.add("vacia");
-        button.disabled = true;
-        button.classList.remove("enabled");
-        button.classList.add("disabled");
-        return;
-      }
-    if(verificarIngreso(entrada,numeracion)){
-        valor.classList.remove("vacia")
-        valor.classList.remove("incorrecto")
-        valor.classList.add("correcto")
-        button.disabled = false;
-        button.classList.remove("disabled");
-        button.classList.add("enabled");
-        
-        return true ;
-    }
-    else{
-        valor.classList.remove("vacia")
-        valor.classList.remove("correcto")
-        valor.classList.add("incorrecto")
-        button.disabled = true;
-        button.classList.remove("enabled");
-        button.classList.add("disabled");
-        return false;
-    }
-
-}
-historial.innerHTML = armarHistorial(elimHistorial);
-valor.addEventListener("input",validar)
-sistema.addEventListener("change",validar)
-validar()
-formularioHTML.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if(validar()){
-    let sistema = formularioHTML.sistema.value;
-    let valor = formularioHTML.valor.value;  
-     const resultadosHTML = convertir(valor, sistema);
-        const resultadosContainer = document.getElementById("resultados");
-        resultadosContainer.innerHTML = resultadosHTML;
-    }
-    historial.innerHTML = armarHistorial(elimHistorial);
 });
-
-
-elimHistorial.addEventListener("click",() => {
-
-    //card con verificacion de borrado de historial
-
-    Swal.fire({
-  title: "¿Estás seguro?",
-  text: "Se borrará todo el historial y no podrás recuperarlo.",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Sí, borrar",
-  cancelButtonText: "Cancelar",
-   background: `#fff url("assets/bg.png") no-repeat center/cover`,
-  backdrop: `
-    rgba(0,0,0,0.5)
-    left top
-    no-repeat
-  `,
-  color : `white`
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire({
-  title: "¡Eliminado!",
-  text: "Tu historial fue borrado con éxito.",
-  icon: "success",
-  confirmButtonColor: "#3085d6",
-  background: `url("assets/bg.png") no-repeat center/cover`,
-  color: "#fff",
-  customClass: {
-    icon: "swal2-icon-light"
-  }
-});
-    eliminarHistorial(elimHistorial);
-    historial.innerHTML = armarHistorial(elimHistorial);
-  }
-});
-
-    historial.innerHTML = armarHistorial(elimHistorial);
-})
