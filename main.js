@@ -98,6 +98,42 @@ formularioHTML.addEventListener("submit", (e) => {
 
 
 elimHistorial.addEventListener("click",() => {
+
+    //card con verificacion de borrado de historial
+
+    Swal.fire({
+  title: "¿Estás seguro?",
+  text: "Se borrará todo el historial y no podrás recuperarlo.",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Sí, borrar",
+  cancelButtonText: "Cancelar",
+   background: `#fff url("assets/bg.png") no-repeat center/cover`,
+  backdrop: `
+    rgba(0,0,0,0.5)
+    left top
+    no-repeat
+  `,
+  color : `white`
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+  title: "¡Eliminado!",
+  text: "Tu historial fue borrado con éxito.",
+  icon: "success",
+  confirmButtonColor: "#3085d6",
+  background: `url("assets/bg.png") no-repeat center/cover`,
+  color: "#fff",
+  customClass: {
+    icon: "swal2-icon-light"
+  }
+});
     eliminarHistorial(elimHistorial);
+    historial.innerHTML = armarHistorial(elimHistorial);
+  }
+});
+
     historial.innerHTML = armarHistorial(elimHistorial);
 })
