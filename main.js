@@ -2,7 +2,7 @@ import {ConversionPage } from './conversiones.js';
 import {OperacionesPage} from './operacionesBinarios.js'
 
 const routes = {
-    "#/": {  // Cambiado de "#/index.html" a "#/"
+    "#/": {
         title: 'Conversor',
         page: ConversionPage
     },
@@ -24,7 +24,7 @@ function renderPage(route) {
 
 function navigateTo(path) {
     if (routes[path]) {
-        window.location.hash = path; // Corregido de window.history.hash a window.location.hash
+        window.location.hash = path;
         renderPage(routes[path]);
     }
 }
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Navegar a la página de conversión por defecto si no hay hash
+  
     if (!window.location.hash || window.location.hash === "#/") {
         navigateTo("#/");
     } else {

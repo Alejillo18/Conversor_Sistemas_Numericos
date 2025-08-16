@@ -28,7 +28,6 @@ function verificarIngreso(valor,tipo) {
     return true;
 }
 
-// Exporta un objeto con la configuración de la página
 export const ConversionPage = {
     template: `
         <form id="form-entrada">
