@@ -45,7 +45,8 @@ export const OperacionesPage = {
         const button = document.getElementById("buttonOperacion");
         const errorMessage = document.getElementById("error-message");
         const elimHistorial = document.querySelector(".elimHistorial");
-
+        const resultadosContainer = document.getElementById("resultados");
+        resultadosContainer.innerHTML = "";
         function actualizarEstadoInput(input, esValido, mensaje = "") {
             input.classList.remove("vacia", "correcto", "incorrecto");
             
@@ -120,7 +121,6 @@ export const OperacionesPage = {
                 const resultadosHTML = realizarOperaciones(
                     input1.value.trim(),
                     input2.value.trim());
-                const resultadosContainer = document.getElementById("resultados");
                 resultadosContainer.innerHTML = resultadosHTML;
             }
             historial.innerHTML = armarHistorial(elimHistorial);

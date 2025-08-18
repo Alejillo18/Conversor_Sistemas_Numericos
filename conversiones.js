@@ -50,11 +50,11 @@ export const ConversionPage = {
         const button = document.getElementById("buttonConvertir");
         const historial = document.getElementById("historial");
         const elimHistorial = document.querySelector(".elimHistorial");
-
+        const resultadosContainer = document.getElementById("resultados");
+        resultadosContainer.innerHTML = "";
         function validar(){
     const entrada = valor.value.trim();
     const numeracion = sistema.value;
-
     if (entrada === "") {
         valor.classList.add("vacia");
         button.disabled = true;
@@ -94,7 +94,7 @@ export const ConversionPage = {
                 let sistema = formularioHTML.sistema.value;
                 let valor = formularioHTML.valor.value;  
                 const resultadosHTML = convertir(valor, sistema);
-                const resultadosContainer = document.getElementById("resultados");
+                
                 resultadosContainer.innerHTML = resultadosHTML;
             }
             historial.innerHTML = armarHistorial(elimHistorial);

@@ -1,50 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Conversor avanzado entre sistemas numéricos: decimal, binario, octal y hexadecimal. Realiza operaciones binarias y guarda tu historial de conversiones."
+    />
+    <meta
+      name="keywords"
+      content="conversor numérico, binario a decimal, hexadecimal a octal, operaciones binarias, calculadora sistemas numéricos"
+    />
+    <meta name="author" content="Oviedo Alejo" />
+    <meta property="og:title" content="Conversor de Sistemas Numéricos" />
+    <meta
+      property="og:description"
+      content="Herramienta completa para conversión entre sistemas numéricos y operaciones binarias"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://starlit-mochi-cfe2c1.netlify.app/#/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistemas Numericos</title>
-    <link rel="shortcut icon" href="./assets/icon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
+    <link rel="shortcut icon" href="./assets/icon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="./dist/styles.css" />
+  </head>
+  <body>
     <header>
-        <h1>
-            Conversor de Sistemas Numéricos
-        </h1>
-        <div>
-            <nav>
-                <a href="https://es.wikipedia.org/wiki/Sistema_de_numeraci%C3%B3n_decimal" target="_blank">Sistema decimal</a>
-                <a href="https://es.wikipedia.org/wiki/Sistema_de_numeraci%C3%B3n_binaria" target="_blank">Sistema Binario</a>
-                <a href="https://es.wikipedia.org/wiki/Sistema_de_numeraci%C3%B3n_octal" target="_blank">Sistema Octal</a>
-                <a href="https://es.wikipedia.org/wiki/Sistema_hexadecimal" target="_blank">Sistema Hexadecimal</a>
-            </nav>
-        </div>
+      <h1>Conversor de Sistemas Numéricos</h1>
+      <div>
+        <nav>
+          <a
+            href="https://es.wikipedia.org/wiki/Sistema_de_numeraci%C3%B3n_decimal"
+            target="_blank"
+            >Sistema decimal</a
+          >
+          <a
+            href="https://es.wikipedia.org/wiki/Sistema_de_numeraci%C3%B3n_binaria"
+            target="_blank"
+            >Sistema Binario</a
+          >
+          <a
+            href="https://es.wikipedia.org/wiki/Sistema_de_numeraci%C3%B3n_octal"
+            target="_blank"
+            >Sistema Octal</a
+          >
+          <a
+            href="https://es.wikipedia.org/wiki/Sistema_hexadecimal"
+            target="_blank"
+            >Sistema Hexadecimal</a
+          >
+        </nav>
+      </div>
     </header>
     <main>
-        <div id="container"></div>
-        <div id="resultados"></div>
-        <div class= "historial" style="display: flex;">
-             <div id="historial"></div>
-             <button class = "elimHistorial disabled">🗑️</button>
-        </div>
-        <nav style="display: flex; justify-content: center; margin-top: 20px; flex-direction: column;">
+      <div id="container"></div>
+      <div id="resultados"></div>
+      <div class="historial" style="display: flex">
+        <div id="historial"></div>
+        <button class="elimHistorial disabled">🗑️</button>
+      </div>
+      <nav class="links"
+        style="
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+          flex-direction: column;
+        "
+      >
         <a href="#/" data-link>Conversor de Sistemas Numéricos</a>
-        <a href="#/operacionesBinarios" data-link>Operaciones con Números Binarios</a>
-    </nav>
+        <a href="#/operacionesBinarios" data-link
+          >Operaciones con Números Binarios</a
+        >
+      </nav>
     </main>
     <footer>
-        <div class="footerContainer">
-            <h3>Oviedo Alejo, 2025</h3>
-            <nav>
-                <a href="https://www.linkedin.com/in/alejo-oviedo18" target="_blank"><img src="./assets/linkedin.png" alt="Perfil de LinkedIn"></a>
-                <a href="https://github.com/Alejillo18" target="_blank"><img src="./assets/github.png" alt="Perfil de GitHub"></a>
-            </nav>
-        </div>
-        <p style="font-size: 10px;">Las referencias y enlaces externos acerca de los distintos sistemas de numeración provienen de Wikipedia.</p>
+      <div class="footerContainer">
+        <h3>Oviedo Alejo, 2025</h3>
+        <nav>
+          <a href="https://www.linkedin.com/in/alejo-oviedo18" target="_blank"
+            ><img src="./assets/linkedin.png" alt="Perfil de LinkedIn"
+          /></a>
+          <a href="https://github.com/Alejillo18" target="_blank"
+            ><img src="./assets/github.png" alt="Perfil de GitHub"
+          /></a>
+        </nav>
+      </div>
+      <p style="font-size: 10px">
+        Las referencias y enlaces externos acerca de los distintos sistemas de
+        numeración provienen de Wikipedia.
+      </p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type = "module" src="./main.js"></script>
-</body>
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>
